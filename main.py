@@ -1,4 +1,4 @@
-# Database code for the DB Forum, full solution!
+# Database code for the DB News
 
 import psycopg2
 
@@ -11,9 +11,9 @@ where log.status like '%200%'
 group by log.path, articles.title order by views desc limit 3;
 """
 
-ques_3 = 'who are the most popular article authors of all time?'
+ques_2 = 'who are the most popular article authors of all time?'
 
-"""
+query_2 = """
 select authors.name, count(*) as views from articles inner join authors on articles.author = authors.id inner join log on concat('/article/', articles.slug) = log.path where log.status like '%200%' group by authors.name order by views desc;
 """
 
@@ -62,8 +62,5 @@ if __name__ == '__main__':
     problem.solve(ques_2, query_2)
     problem.solve(ques_3, query_3, '% error')
     problem.exit()
-    
-    
-    #other methods:
     
     
